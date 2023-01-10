@@ -1,7 +1,8 @@
 import React from "react";
+import { DashboardLayout } from "../layout";
 
 const ColorPickerPage = () => {
-  return <div>ColorPickerPage</div>;
+  return <DashboardLayout>ColorPickerPage</DashboardLayout>;
 };
 
 export default ColorPickerPage;

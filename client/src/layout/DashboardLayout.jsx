@@ -37,10 +37,19 @@ const DashboardLayout = ({ children }) => {
             <ul className="menu menu-horizontal">
               {/* <!-- Navbar menu content here --> */}
               <li>
-                <a>Navbar Item 1</a>
+                <NavLink to={PATHS.home}>Home</NavLink>
               </li>
               <li>
-                <a>Navbar Item 2</a>
+                <NavLink to={PATHS.todo}>Todo</NavLink>
+              </li>
+              <li>
+                <NavLink to={PATHS.notes}>Notes</NavLink>
+              </li>
+              <li>
+                <NavLink to={PATHS.pomodoro}>Pomodoro</NavLink>
+              </li>
+              <li>
+                <NavLink to={PATHS.colorpicker}>Color Picker</NavLink>
               </li>
             </ul>
           </div>
@@ -54,7 +63,8 @@ const DashboardLayout = ({ children }) => {
           {/* <!-- Sidebar content here --> */}
           <li>
             <NavLink
-              to={PATHS.login}
+              onClick={() => (toggleRef.current.checked = false)}
+              to={PATHS.home}
               className={({ isActive }) =>
                 isActive ? "btn btn-primary" : "bg-transparent"
               }
@@ -63,16 +73,48 @@ const DashboardLayout = ({ children }) => {
             </NavLink>
           </li>
           <li>
-            <NavLink>Todo</NavLink>
+            <NavLink
+              onClick={() => (toggleRef.current.checked = false)}
+              to={PATHS.todo}
+              className={({ isActive }) =>
+                isActive ? "btn btn-primary" : "bg-transparent"
+              }
+            >
+              Todos
+            </NavLink>
           </li>
           <li>
-            <NavLink>Notes</NavLink>
+            <NavLink
+              onClick={() => (toggleRef.current.checked = false)}
+              to={PATHS.notes}
+              className={({ isActive }) =>
+                isActive ? "btn btn-primary" : "bg-transparent"
+              }
+            >
+              Notes
+            </NavLink>
           </li>
           <li>
-            <NavLink>Pomodoro</NavLink>
+            <NavLink
+              onClick={() => (toggleRef.current.checked = false)}
+              to={PATHS.pomodoro}
+              className={({ isActive }) =>
+                isActive ? "btn btn-primary" : "bg-transparent"
+              }
+            >
+              Pomodoro
+            </NavLink>
           </li>
           <li>
-            <NavLink>Color Picker</NavLink>
+            <NavLink
+              onClick={() => (toggleRef.current.checked = false)}
+              to={PATHS.colorpicker}
+              className={({ isActive }) =>
+                isActive ? "btn btn-primary" : "bg-transparent"
+              }
+            >
+              Color Picker
+            </NavLink>
           </li>
         </ul>
       </div>
