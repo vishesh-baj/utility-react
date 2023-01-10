@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
+// login page
 const LoginPage = () => {
   const navigate = useNavigate();
   const schema = yup.object({

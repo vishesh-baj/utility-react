@@ -1,7 +1,7 @@
 import React from "react";
-
+import { DashboardLayout } from "../layout";
 const TodoPage = () => {
-  return <div>TodoPage</div>;
+  return <DashboardLayout>TodoPage</DashboardLayout>;
 };
 
 export default TodoPage;
