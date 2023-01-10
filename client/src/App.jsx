@@ -11,27 +11,59 @@ import {
   TodoPage,
 } from "./pages";
 import { PATHS } from "./routes/paths";
+import { Protected } from "./routes/ProtectedRoutes";
 
 const App = () => {
   return (
     <>
       <BrowserRouter>
-        {/* auth routes */}
-        <AuthLayout>
-          <Routes>
-            <Route element={<LoginPage />} path={PATHS.login} />
-            <Route element={<RegisterPage />} path={PATHS.register} />
-          </Routes>
-        </AuthLayout>
-
-        {/* app routes */}
         <Routes>
+          {/* auth routes */}
+          <Route element={<LoginPage />} path={PATHS.login} />
+          <Route element={<RegisterPage />} path={PATHS.register} />
           <Route element={<Navigate to={PATHS.login} />} path={PATHS.root} />
-          <Route element={<HomePage />} to={PATHS.home} />
-          <Route element={<ColorPickerPage />} path={PATHS.colorpicker} />
-          <Route element={<NotesPage />} path={PATHS.notes} />
-          <Route element={<PomodoroPage />} path={PATHS.pomodoro} />
-          <Route element={<TodoPage />} path={PATHS.todo} />
+
+          {/* app routes */}
+          <Route
+            element={
+              <Protected isLoggedIn={true}>
+                <HomePage />
+              </Protected>
+            }
+            path={PATHS.home}
+          />
+          <Route
+            element={
+              <Protected isLoggedIn={true}>
+                <TodoPage />
+              </Protected>
+            }
+            path={PATHS.todo}
+          />
+          <Route
+            element={
+              <Protected isLoggedIn={true}>
+                <NotesPage />
+              </Protected>
+            }
+            path={PATHS.notes}
+          />
+          <Route
+            element={
+              <Protected isLoggedIn={true}>
+                <PomodoroPage />
+              </Protected>
+            }
+            path={PATHS.pomodoro}
+          />
+          <Route
+            element={
+              <Protected isLoggedIn={true}>
+                <ColorPickerPage />
+              </Protected>
+            }
+            path={PATHS.colorpicker}
+          />
         </Routes>
       </BrowserRouter>
     </>
