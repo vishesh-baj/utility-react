@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { AuthLayout, DashboardLayout } from "./layout";
+
 import {
   ColorPickerPage,
   HomePage,
@@ -23,7 +23,7 @@ const App = () => {
           <Route element={<RegisterPage />} path={PATHS.register} />
           <Route element={<Navigate to={PATHS.login} />} path={PATHS.root} />
 
-          {/* app routes */}
+          {/* app routes protected with extra layer */}
           <Route
             element={
               <Protected isLoggedIn={true}>

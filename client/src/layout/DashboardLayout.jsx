@@ -32,6 +32,7 @@ const DashboardLayout = ({ children }) => {
               </svg>
             </label>
           </div>
+
           <div className="flex-1 px-2 mx-2">Utility App</div>
           <div className="flex-none hidden lg:block">
             <ul className="menu menu-horizontal">
@@ -61,6 +62,7 @@ const DashboardLayout = ({ children }) => {
         <label htmlFor="my-drawer-3" className="drawer-overlay"></label>
         <ul className="menu flex flex-col gap-5 p-4 w-80 bg-base-100">
           {/* <!-- Sidebar content here --> */}
+
           <li>
             <NavLink
               onClick={() => (toggleRef.current.checked = false)}
