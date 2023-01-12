@@ -9,10 +9,10 @@ import {
   PomodoroPage,
   RegisterPage,
   TodoPage,
+  PageNotFound,
 } from "./pages";
 import { PATHS } from "./routes/paths";
 import { Protected } from "./routes/ProtectedRoutes";
-
 const App = () => {
   return (
     <>
@@ -24,6 +24,16 @@ const App = () => {
           <Route element={<Navigate to={PATHS.login} />} path={PATHS.root} />
 
           {/* app routes protected with extra layer */}
+
+          <Route
+            element={
+              <Protected isLoggedIn={true}>
+                <PageNotFound />
+              </Protected>
+            }
+            path={PATHS.error}
+          />
+
           <Route
             element={
               <Protected isLoggedIn={true}>

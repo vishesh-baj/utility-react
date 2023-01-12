@@ -7,4 +7,5 @@ export const PATHS = {
   pomodoro: "/pomodoro",
   colorpicker: "/color-picker",
   notes: "/notes",
+  error: "/404-[page-not-found]",
 };
