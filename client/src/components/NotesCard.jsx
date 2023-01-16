@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ColorBadge from "./ColorBadge";
 import { IoTrashBinOutline } from "react-icons/io5";
 import { RiEditCircleLine } from "react-icons/ri";
@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { removeNote, changeLabelColor } from "../redux/AppSlice";
 
 const NotesCard = ({ id, title, info, labelColor }) => {
+  const [isCoppied, setIsCoppied] = useState(false);
   const dispatch = useDispatch();
   const checkColor = (color) => {
     switch (color) {
@@ -33,6 +34,26 @@ const NotesCard = ({ id, title, info, labelColor }) => {
   const handleColorChange = (color) => {
     dispatch(changeLabelColor({ id: id, labelColor: color }));
   };
+  const handleCopyClick = async () => {
+    try {
+      await navigator.clipboard.writeText(title.concat(info));
+      setIsCoppied((prevState) => !prevState);
+    } catch (err) {
+      console.error("Failed to copy text: ", err);
+    }
+  };
+
+  const resetIsCoppiedState = () => {
+    if (isCoppied) {
+      setTimeout(() => {
+        setIsCoppied(false);
+      }, 3000);
+    }
+  };
+
+  useEffect(() => {
+    resetIsCoppiedState();
+  }, [isCoppied]);
 
   return (
     <div
@@ -89,12 +110,25 @@ const NotesCard = ({ id, title, info, labelColor }) => {
             </button>
           </div>
           <div className="tooltip" data-tip="copy to clipboard">
-            <button className=" btn btn-ghost btn-circle">
+            <button
+              onClick={handleCopyClick}
+              className=" btn btn-ghost btn-circle"
+            >
               <RxCopy className="text-lg text-white font-bold" />
             </button>
           </div>
         </div>
       </div>
+      {/* toast */}
+      {isCoppied && (
+        <div className="toast toast-top toast-start">
+          <div className="alert alert-info">
+            <div>
+              <span>Note copied</span>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
