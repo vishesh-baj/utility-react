@@ -10,7 +10,9 @@ const TodoCard = ({ id, title, index }) => {
   const handleComplete = () => {
     dispatch(removeTodo(id));
   };
-  const handleDelete = () => {};
+  const handleDelete = () => {
+    dispatch(removeTodo(id));
+  };
   const handleEdit = () => {
     setEditMode((prevState) => !prevState);
   };
@@ -31,7 +33,7 @@ const TodoCard = ({ id, title, index }) => {
             <input
               onChange={(e) => handleChange(e)}
               value={editedCardTitle}
-              className="input input-primary"
+              className="input input-success"
               type="text"
               name=""
               id=""
@@ -58,7 +60,7 @@ const TodoCard = ({ id, title, index }) => {
                 Edit
               </button>
             )}
-            <button onClick={handleComplete} className="btn btn-error">
+            <button onClick={handleDelete} className="btn btn-error">
               Delete
             </button>
           </div>

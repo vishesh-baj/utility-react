@@ -3,7 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   user: null,
   todo: [],
-  completedTodo: [],
   notes: [],
   pomodoro: [],
   colorPicker: [],
