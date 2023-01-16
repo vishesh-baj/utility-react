@@ -4,10 +4,37 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   user: null,
   todo: [],
-  notes: [],
+  notes: [
+    {
+      title: "Note 1 Title",
+      info: "note info",
+      labelColor: "none",
+    },
+    {
+      title: "Note 1 Title",
+      info: "note info",
+      labelColor: "none",
+    },
+    {
+      title: "Note 1 Title",
+      info: "note info",
+      labelColor: "none",
+    },
+    {
+      title: "Note 1 Title",
+      info: "note info",
+      labelColor: "none",
+    },
+    {
+      title: "Note 1 Title",
+      info: "note info",
+      labelColor: "none",
+    },
+  ],
   pomodoro: [],
   colorPicker: [],
 };
+
 // global slice have all thec data for the application
 export const globalSlice = createSlice({
   name: "global_slice",
@@ -51,6 +78,7 @@ export const globalSlice = createSlice({
 });
 
 // * actions
-export const { addTodo, removeTodo, editTodo } = globalSlice.actions;
+export const { addTodo, removeTodo, editTodo, addNote, removeNote } =
+  globalSlice.actions;
 // * reducer
 export default globalSlice.reducer;

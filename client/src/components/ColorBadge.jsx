@@ -17,7 +17,6 @@ const ColorBadge = ({ colorType }) => {
         break;
     }
   };
-
   return (
     <div
       className={`w-6 h-6 cursor-pointer rounded-full ${checkColor(colorType)}`}
