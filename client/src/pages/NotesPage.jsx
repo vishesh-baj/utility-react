@@ -4,7 +4,6 @@ import { NotesCard } from "../components";
 import { useSelector, useDispatch } from "react-redux";
 import { GrAdd } from "react-icons/gr";
 import { addNote } from "../redux/AppSlice";
-
 const NotesPage = () => {
   const [newNote, setNewNote] = useState({
     title: "",
@@ -116,7 +115,6 @@ const NotesPage = () => {
                 <option value="warning">Warning</option>
                 <option value="none">None</option>
               </select>
-
               <button type="submit" className="btn btn-info w-1/4">
                 Add
               </button>

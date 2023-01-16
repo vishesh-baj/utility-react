@@ -6,6 +6,7 @@ import { GrFavorite } from "react-icons/gr";
 import { RxCopy } from "react-icons/rx";
 import { useDispatch } from "react-redux";
 import { removeNote } from "../redux/AppSlice";
+
 const NotesCard = ({ id, title, info, labelColor }) => {
   const dispatch = useDispatch();
   const checkColor = (color) => {
@@ -52,6 +53,7 @@ const NotesCard = ({ id, title, info, labelColor }) => {
           </div>
         </div>
       </div>
+
       <p className="mt-4">{info}</p>
       <div className="w-full flex justify-center">
         <div className="flex w-auto p-2 gap-4 mt-4 bg-base-200  rounded-full">
