@@ -12,7 +12,6 @@ const TodoCard = ({ id, title, index }) => {
   const handleDelete = () => {};
   const handleEdit = () => {};
 
-  
   return (
     <div className="card w-96 h-48 bg-base-100 shadow-xl">
       <div className="card-body">
