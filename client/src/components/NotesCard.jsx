@@ -5,7 +5,7 @@ import { RiEditCircleLine } from "react-icons/ri";
 import { GrFavorite } from "react-icons/gr";
 import { RxCopy } from "react-icons/rx";
 import { useDispatch } from "react-redux";
-import { removeNote } from "../redux/AppSlice";
+import { removeNote, changeLabelColor } from "../redux/AppSlice";
 
 const NotesCard = ({ id, title, info, labelColor }) => {
   const dispatch = useDispatch();
@@ -30,26 +30,42 @@ const NotesCard = ({ id, title, info, labelColor }) => {
     dispatch(removeNote(id));
   };
 
+  const handleColorChange = (color) => {
+    dispatch(changeLabelColor({ id: id, labelColor: color }));
+  };
+
   return (
     <div
-      className={`w-full md:w-1/3 p-6 flex flex-wrap rounded-lg  shadow-sm shadow-base-200 hover:shadow-info mt-5 ${checkColor(
+      className={`w-full md:w-1/3 p-6 flex flex-wrap rounded-lg  shadow-sm shadow-base-200 mt-5 ${checkColor(
         labelColor
       )}`}
     >
       <div className="w-full flex items-center justify-between">
-        <h1 className="text-3xl">{title}</h1>
+        <h1 className="text-2xl md:text-3xl">{title}</h1>
         <div className="flex gap-2 bg-base-200 px-4 py-2 rounded-full">
           <div className="tooltip" data-tip="primary label">
-            <ColorBadge colorType="primary" />
+            <ColorBadge
+              onClick={() => handleColorChange("primary")}
+              colorType="primary"
+            />
           </div>
           <div className="tooltip" data-tip="secondary label">
-            <ColorBadge colorType="secondary" />
+            <ColorBadge
+              onClick={() => handleColorChange("secondary")}
+              colorType="secondary"
+            />
           </div>
           <div className="tooltip" data-tip="info label">
-            <ColorBadge colorType="info" />
+            <ColorBadge
+              onClick={() => handleColorChange("info")}
+              colorType="info"
+            />
           </div>
           <div className="tooltip" data-tip="warning label">
-            <ColorBadge colorType="warning" />
+            <ColorBadge
+              onClick={() => handleColorChange("warning")}
+              colorType="warning"
+            />
           </div>
         </div>
       </div>

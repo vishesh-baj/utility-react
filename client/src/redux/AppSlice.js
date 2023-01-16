@@ -6,26 +6,13 @@ const initialState = {
   todo: [],
   notes: [
     {
+      id: 1,
       title: "Note 1 Title",
       info: "note info",
       labelColor: "none",
     },
     {
-      title: "Note 1 Title",
-      info: "note info",
-      labelColor: "none",
-    },
-    {
-      title: "Note 1 Title",
-      info: "note info",
-      labelColor: "none",
-    },
-    {
-      title: "Note 1 Title",
-      info: "note info",
-      labelColor: "none",
-    },
-    {
+      id: 2,
       title: "Note 1 Title",
       info: "note info",
       labelColor: "none",
@@ -74,11 +61,28 @@ export const globalSlice = createSlice({
       );
       state.notes = filteredArr;
     },
+
+    // ? change label color of note
+    changeLabelColor: (state, action) => {
+      const editedArr = state.notes.map((note) => {
+        if (note.id === action.payload.id) {
+          return { ...note, labelColor: action.payload.labelColor };
+        }
+        return note;
+      });
+      state.notes = editedArr;
+    },
   },
 });
 
 // * actions
-export const { addTodo, removeTodo, editTodo, addNote, removeNote } =
-  globalSlice.actions;
+export const {
+  addTodo,
+  removeTodo,
+  editTodo,
+  addNote,
+  removeNote,
+  changeLabelColor,
+} = globalSlice.actions;
 // * reducer
 export default globalSlice.reducer;

@@ -4,6 +4,7 @@ import { NotesCard } from "../components";
 import { useSelector, useDispatch } from "react-redux";
 import { GrAdd } from "react-icons/gr";
 import { addNote } from "../redux/AppSlice";
+
 const NotesPage = () => {
   const [newNote, setNewNote] = useState({
     title: "",
@@ -41,7 +42,7 @@ const NotesPage = () => {
     <DashboardLayout>
       <div className="flex flex-col items-center bg-base-200 w-screen h-auto">
         <h1 className="text-6xl py-4 text-white">Notes</h1>
-        <div className="block md:flex md:flex-wrap justify-center gap-4 p-4">
+        <div className="w-full block md:flex md:flex-wrap justify-center gap-4 p-4">
           <div
             onClick={handleModalToggle}
             className="w-full rounded-lg p-4 bg-base-200 border-4 border-base-300 h-[150px] flex justify-center items-center"

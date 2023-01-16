@@ -1,6 +1,6 @@
 import React from "react";
 
-const ColorBadge = ({ colorType }) => {
+const ColorBadge = ({ colorType, onClick }) => {
   const checkColor = (colorType) => {
     switch (colorType) {
       case "primary":
@@ -19,6 +19,7 @@ const ColorBadge = ({ colorType }) => {
   };
   return (
     <div
+      onClick={onClick}
       className={`w-6 h-6 cursor-pointer rounded-full ${checkColor(colorType)}`}
     ></div>
   );
