@@ -34,6 +34,7 @@ const NotesCard = ({ id, title, info, labelColor }) => {
   const handleColorChange = (color) => {
     dispatch(changeLabelColor({ id: id, labelColor: color }));
   };
+
   const handleCopyClick = async () => {
     try {
       await navigator.clipboard.writeText(title.concat(info));
