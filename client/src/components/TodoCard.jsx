@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { removeTodo } from "../redux/AppSlice";
+import { removeTodo, editTodo } from "../redux/AppSlice";
 
 const TodoCard = ({ id, title, index }) => {
-  const [cardTitle, setCardTitle] = useState(title);
   const [editedCardTitle, setEditedCardTitle] = useState(title);
   const [editMode, setEditMode] = useState(false);
   const dispatch = useDispatch();
@@ -11,7 +10,6 @@ const TodoCard = ({ id, title, index }) => {
   const handleComplete = () => {
     dispatch(removeTodo(id));
   };
-
   const handleDelete = () => {};
   const handleEdit = () => {
     setEditMode((prevState) => !prevState);
@@ -19,33 +17,48 @@ const TodoCard = ({ id, title, index }) => {
   const handleChange = (e) => {
     setEditedCardTitle(e.target.value);
   };
+  const handleSubmit = () => {
+    dispatch(editTodo({ id, title: editedCardTitle }));
+    setEditMode((prevState) => !prevState);
+    console.log("SUBMITTED");
+  };
 
   return (
     <div className="card w-96 h-48 bg-base-100 shadow-xl">
       <div className="card-body">
         {editMode ? (
-          <input
-            onChange={(e) => handleChange(e)}
-            value={editedCardTitle}
-            className="input input-primary"
-            type="text"
-            name=""
-            id=""
-          />
+          <div className="flex justify-between">
+            <input
+              onChange={(e) => handleChange(e)}
+              value={editedCardTitle}
+              className="input input-primary"
+              type="text"
+              name=""
+              id=""
+            />
+            <button
+              onClick={handleSubmit}
+              className="btn btn-success btn-circle text-4xl"
+            >
+              +
+            </button>
+          </div>
         ) : (
           <h2 className="card-title">
             {index + 1}: {editedCardTitle}
           </h2>
         )}
         <div className="flex flex-1 justify-center items-center">
-          <div className="flex gap-5">
-            <button onClick={handleComplete} className="btn btn-primary w-1/3">
+          <div className="flex justify-between gap-5">
+            <button onClick={handleComplete} className="btn btn-primary ">
               Completed
             </button>
-            <button onClick={handleEdit} className="btn btn-success">
-              {editMode ? "Save" : "Edit"}
-            </button>
-            <button onClick={handleComplete} className="btn btn-error w-1/3">
+            {!editMode && (
+              <button onClick={handleEdit} className={`btn btn-success`}>
+                Edit
+              </button>
+            )}
+            <button onClick={handleComplete} className="btn btn-error">
               Delete
             </button>
           </div>

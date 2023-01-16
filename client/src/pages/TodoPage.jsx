@@ -33,7 +33,7 @@ const TodoPage = () => {
         <div className="flex flex-col bg-base-200 w-full h-full justify-start items-center p-4">
           <div
             onClick={toggleModal}
-            className="flex justify-center items-center border-4 border-base-100 rounded-xl w-96 h-48 cursor-pointer"
+            className="flex justify-center items-center border-4 border-base-100 rounded-xl w-96 h-48 cursor-pointer hover:bg-base-100 transition-all ease-in-out duration-400"
           >
             <IoAdd className="text-8xl text-base-300" />
           </div>

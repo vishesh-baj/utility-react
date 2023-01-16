@@ -25,10 +25,16 @@ export const globalSlice = createSlice({
     },
 
     editTodo: (state, action) => {
-      const objToEdit = state.todo.filter((todo, idx) => todo.id);
+      const editedArr = state.todo.map((todo) => {
+        if (todo.id === action.payload.id) {
+          return { id: todo.id, title: action.payload.title };
+        }
+        return todo;
+      });
+      state.todo = editedArr;
     },
   },
 });
 
-export const { addTodo, removeTodo } = globalSlice.actions;
+export const { addTodo, removeTodo, editTodo } = globalSlice.actions;
 export default globalSlice.reducer;
