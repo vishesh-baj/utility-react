@@ -50,7 +50,6 @@ const TodoPage = () => {
             </div>
           </div>
         </div>
-
         <input
           ref={modalRef}
           type="checkbox"
