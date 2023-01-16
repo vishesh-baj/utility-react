@@ -38,6 +38,15 @@ const NotesPage = () => {
     console.log(newNote);
   };
 
+  const handleCopyClick = async () => {
+    try {
+      await navigator.clipboard.writeText(newNote);
+      setIsCopied(true);
+    } catch (err) {
+      console.error("Failed to copy text: ", err);
+    }
+  };
+
   return (
     <DashboardLayout>
       <div className="flex flex-col items-center bg-base-200 w-screen h-auto">
@@ -104,12 +113,9 @@ const NotesPage = () => {
                 name="labelColor"
                 onChange={(e) => handleChange(e)}
                 value={newNote.labelColor}
-                defaultValue="none"
                 className="select select-ghost w-full max-w-xs"
               >
-                <option disabled selected>
-                  Pick a label
-                </option>
+                <option disabled>Pick a label</option>
                 <option value="primary">Primary</option>
                 <option value="secondary">Secondary</option>
                 <option value="info">Info</option>

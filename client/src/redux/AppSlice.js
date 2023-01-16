@@ -22,7 +22,7 @@ const initialState = {
   colorPicker: [],
 };
 
-// global slice have all thec data for the application
+// global slice have all the data for the application
 export const globalSlice = createSlice({
   name: "global_slice",
   initialState,
@@ -72,6 +72,22 @@ export const globalSlice = createSlice({
       });
       state.notes = editedArr;
     },
+
+    // ? add to favourites
+    addToFavourites: (state, action) => {
+      console.log(state.notes);
+    },
+
+    // ? Edit note
+    editNote: (state, action) => {
+      const editedArr = state.notes.map((note) => {
+        if (note.id === action.payload.id) {
+          return action.payload;
+        }
+        return note;
+      });
+      state.notes = editedArr;
+    },
   },
 });
 
@@ -83,6 +99,8 @@ export const {
   addNote,
   removeNote,
   changeLabelColor,
+  addToFavourites,
+  editNote,
 } = globalSlice.actions;
 // * reducer
 export default globalSlice.reducer;
