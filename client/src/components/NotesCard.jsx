@@ -5,7 +5,11 @@ import { RiEditCircleLine } from "react-icons/ri";
 import { GrFavorite } from "react-icons/gr";
 import { RxCopy } from "react-icons/rx";
 import { useDispatch } from "react-redux";
-import { removeNote, changeLabelColor } from "../redux/AppSlice";
+import {
+  removeNote,
+  changeLabelColor,
+  addNoteToFavourite,
+} from "../redux/AppSlice";
 
 // notes card for  the notes page component page
 const NotesCard = ({ id, title, info, labelColor }) => {
@@ -48,6 +52,19 @@ const NotesCard = ({ id, title, info, labelColor }) => {
     } catch (err) {
       console.error("Failed to copy text: ", err);
     }
+  };
+
+  // function to add note to favourites
+  const handleSaveToFavourite = () => {
+    dispatch(
+      addNoteToFavourite({
+        id: Math.trunc(Math.random() * 1000),
+        title: title,
+        info: info,
+        labelColor,
+      })
+    );
+    console.log("SAVED TO NOTES FAVOURITE");
   };
 
   // resets the copy state to default so that toats can hide
@@ -112,7 +129,10 @@ const NotesCard = ({ id, title, info, labelColor }) => {
             </button>
           </div>
           <div className="tooltip" data-tip="add to favourites">
-            <button className=" btn btn-accent btn-circle">
+            <button
+              onClick={handleSaveToFavourite}
+              className=" btn btn-accent btn-circle"
+            >
               <GrFavorite className="text-lg text-white font-bold" />
             </button>
           </div>

@@ -20,6 +20,7 @@ const initialState = {
   ],
   pomodoro: [],
   colorPicker: [],
+  notesFav: [],
   activityScore: 0,
 };
 
@@ -28,6 +29,7 @@ export const globalSlice = createSlice({
   name: "global_slice",
   initialState,
   reducers: {
+    // * TODOS___________________________________________________________
     // ? add a todo
     addTodo: (state, action) => {
       state.todo = [...state.todo, action.payload];
@@ -51,6 +53,7 @@ export const globalSlice = createSlice({
       state.todo = editedArr;
     },
 
+    // * NOTES___________________________________________________________
     // ? add a note
     addNote: (state, action) => {
       state.notes = [...state.notes, action.payload];
@@ -91,11 +94,10 @@ export const globalSlice = createSlice({
       state.notes = editedArr;
     },
 
-    // ? Add Pomodoro
-    addPomodoro: (state, action) => {},
-
-    // ? Remove Pomodoro
-    removePomodoro: (state, action) => {},
+    // ? Add note to favourite
+    addNoteToFavourite: (state, action) => {
+      state.notesFav = [...state.notesFav, action.payload];
+    },
   },
 });
 
@@ -109,6 +111,7 @@ export const {
   changeLabelColor,
   addToFavourites,
   editNote,
+  addNoteToFavourite,
 } = globalSlice.actions;
 // * reducer
 export default globalSlice.reducer;
