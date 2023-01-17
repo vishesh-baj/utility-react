@@ -1,0 +1,12 @@
+{
+  "user": {},
+  "todos": [],
+  "notes": [],
+  "pomodoros": [],
+  "colorPicker": [],
+  "appConstants": {
+    "activeScore": 0,
+    "userLevel": 0,
+    "timesLoggedIn": 0
+  }
+}

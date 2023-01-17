@@ -4,24 +4,17 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   user: null,
   todo: [],
-  notes: [
-    {
-      id: 1,
-      title: "Note 1 Title",
-      info: "note info",
-      labelColor: "none",
-    },
-    {
-      id: 2,
-      title: "Note 1 Title",
-      info: "note info",
-      labelColor: "none",
-    },
-  ],
+  notes: {
+    sessionNotes: [],
+    favouriteNotes: [],
+  },
   pomodoro: [],
   colorPicker: [],
-  notesFav: [],
-  activityScore: 0,
+  appConstants: {
+    activityScore: 0,
+    userLevel: 0,
+    timesLoggedIn: 0,
+  },
 };
 
 // global slice have all the data for the application
@@ -56,31 +49,26 @@ export const globalSlice = createSlice({
     // * NOTES___________________________________________________________
     // ? add a note
     addNote: (state, action) => {
-      state.notes = [...state.notes, action.payload];
+      state.notes.sessionNotes = [...state.notes.sessionNotes, action.payload];
     },
 
     // ? remove a note
     removeNote: (state, action) => {
-      const filteredArr = state.notes.filter(
+      const filteredArr = state.notes.sessionNotes.filter(
         (note) => note.id !== action.payload
       );
-      state.notes = filteredArr;
+      state.notes.sessionNotes = filteredArr;
     },
 
     // ? change label color of note
     changeLabelColor: (state, action) => {
-      const editedArr = state.notes.map((note) => {
+      const editedArr = state.notes.sessionNotes.map((note) => {
         if (note.id === action.payload.id) {
           return { ...note, labelColor: action.payload.labelColor };
         }
         return note;
       });
-      state.notes = editedArr;
-    },
-
-    // ? add to favourites
-    addToFavourites: (state, action) => {
-      console.log(state.notes);
+      state.notes.sessionNotes = editedArr;
     },
 
     // ? Edit note
@@ -96,7 +84,10 @@ export const globalSlice = createSlice({
 
     // ? Add note to favourite
     addNoteToFavourite: (state, action) => {
-      state.notesFav = [...state.notesFav, action.payload];
+      state.notes.favouriteNotes = [
+        ...state.notes.favouriteNotes,
+        action.payload,
+      ];
     },
   },
 });

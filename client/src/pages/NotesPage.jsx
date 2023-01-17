@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { GrAdd } from "react-icons/gr";
 import { addNote } from "../redux/AppSlice";
 
+// notes page
 const NotesPage = () => {
   const [newNote, setNewNote] = useState({
     title: "",
@@ -12,7 +13,7 @@ const NotesPage = () => {
     labelColor: "",
   });
   const modalRef = useRef();
-  const notesList = useSelector((state) => state.app.notes);
+  const notesList = useSelector((state) => state.app.notes.sessionNotes);
   const dispatch = useDispatch();
   const handleModalToggle = () => {
     modalRef.current.checked = !modalRef.current.checked;
@@ -28,6 +29,7 @@ const NotesPage = () => {
         labelColor: newNote.labelColor,
       })
     );
+
     setNewNote({ title: "", info: "", labelColor: "" });
     handleModalToggle();
     console.log("SUBMIT TRIGGERED");
