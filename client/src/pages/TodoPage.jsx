@@ -50,6 +50,8 @@ const TodoPage = () => {
             </div>
           </div>
         </div>
+
+        {/* const input ref is directally provided for the controllable ocmponet and therefore there are so many tihngsi n yih */}
         <input
           ref={modalRef}
           type="checkbox"

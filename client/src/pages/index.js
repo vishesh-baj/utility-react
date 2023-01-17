@@ -5,4 +5,5 @@ export { default as PomodoroPage } from "./PomodoroPage";
 export { default as HomePage } from "./HomePage";
 export { default as TodoPage } from "./TodoPage";
 export { default as RegisterPage } from "./RegisterPage";
-export { default as PageNotFound } from "./Error-4040Page";
+export { default as PageNotFound } from "./Error-404Page";
+export { default as ErrorPage } from "./Error-404Page";

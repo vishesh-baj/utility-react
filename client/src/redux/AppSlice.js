@@ -20,6 +20,7 @@ const initialState = {
   ],
   pomodoro: [],
   colorPicker: [],
+  activityScore: 0,
 };
 
 // global slice have all the data for the application
@@ -38,6 +39,7 @@ export const globalSlice = createSlice({
       });
       state.todo = filteredArr;
     },
+
     // ? edit a todo
     editTodo: (state, action) => {
       const editedArr = state.todo.map((todo) => {
@@ -88,7 +90,12 @@ export const globalSlice = createSlice({
       });
       state.notes = editedArr;
     },
+
     // ? Add Pomodoro
+    addPomodoro: (state, action) => {},
+
+    // ? Remove Pomodoro
+    removePomodoro: (state, action) => {},
   },
 });
 

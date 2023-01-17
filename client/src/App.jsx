@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-
 import {
   ColorPickerPage,
   HomePage,
@@ -10,9 +9,11 @@ import {
   RegisterPage,
   TodoPage,
   PageNotFound,
+  ErrorPage,
 } from "./pages";
 import { PATHS } from "./routes/paths";
 import { Protected } from "./routes/ProtectedRoutes";
+
 const App = () => {
   return (
     <>
@@ -22,6 +23,7 @@ const App = () => {
           <Route element={<LoginPage />} path={PATHS.login} />
           <Route element={<RegisterPage />} path={PATHS.register} />
           <Route element={<Navigate to={PATHS.login} />} path={PATHS.root} />
+          <Route path="*" element={<ErrorPage />} />
 
           {/* app routes protected with extra layer */}
 

@@ -7,9 +7,12 @@ import { RxCopy } from "react-icons/rx";
 import { useDispatch } from "react-redux";
 import { removeNote, changeLabelColor } from "../redux/AppSlice";
 
+// notes card for  the notes page component page
 const NotesCard = ({ id, title, info, labelColor }) => {
   const [isCoppied, setIsCoppied] = useState(false);
+  // dispatch the function to the store
   const dispatch = useDispatch();
+  // check color
   const checkColor = (color) => {
     switch (color) {
       case "primary":
@@ -27,14 +30,17 @@ const NotesCard = ({ id, title, info, labelColor }) => {
     }
   };
 
+  // delete the note
   const handleDelete = () => {
     dispatch(removeNote(id));
   };
 
+  // changes the colorand dispatch
   const handleColorChange = (color) => {
     dispatch(changeLabelColor({ id: id, labelColor: color }));
   };
 
+  // function to copy the data to clipboard
   const handleCopyClick = async () => {
     try {
       await navigator.clipboard.writeText(title.concat(info));
@@ -44,6 +50,7 @@ const NotesCard = ({ id, title, info, labelColor }) => {
     }
   };
 
+  // resets the copy state to default so that toats can hide
   const resetIsCoppiedState = () => {
     if (isCoppied) {
       setTimeout(() => {
@@ -51,7 +58,6 @@ const NotesCard = ({ id, title, info, labelColor }) => {
       }, 3000);
     }
   };
-
   useEffect(() => {
     resetIsCoppiedState();
   }, [isCoppied]);
