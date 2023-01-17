@@ -7,6 +7,7 @@
   "appConstants": {
     "activeScore": 0,
     "userLevel": 0,
-    "timesLoggedIn": 0
+    "timesLoggedIn": 0,
+    "timeLogged": null
   }
 }

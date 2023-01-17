@@ -65,7 +65,7 @@ export const globalSlice = createSlice({
       state.appConstants.activityScore += 1;
     },
 
-    // ? change label color of note
+    // ? change label color of note to different color
     changeLabelColor: (state, action) => {
       const editedArr = state.notes.sessionNotes.map((note) => {
         if (note.id === action.payload.id) {
@@ -100,6 +100,7 @@ export const globalSlice = createSlice({
   },
 });
 
+// specifics are provided
 // * actions
 export const {
   addTodo,

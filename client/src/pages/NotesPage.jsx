@@ -20,6 +20,7 @@ const NotesPage = () => {
     modalRef.current.checked = !modalRef.current.checked;
     console.log("MODAL TOGGLE FOR NOTES");
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(
