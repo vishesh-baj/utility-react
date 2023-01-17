@@ -26,6 +26,7 @@ export const globalSlice = createSlice({
     // ? add a todo
     addTodo: (state, action) => {
       state.todo = [...state.todo, action.payload];
+      state.appConstants.activityScore += 1;
     },
     // ? remove a todo
     removeTodo: (state, action) => {
@@ -33,6 +34,7 @@ export const globalSlice = createSlice({
         return todo.id !== action.payload;
       });
       state.todo = filteredArr;
+      state.appConstants.activityScore += 1;
     },
 
     // ? edit a todo
@@ -44,12 +46,14 @@ export const globalSlice = createSlice({
         return todo;
       });
       state.todo = editedArr;
+      state.appConstants.activityScore += 1;
     },
 
     // * NOTES___________________________________________________________
     // ? add a note
     addNote: (state, action) => {
       state.notes.sessionNotes = [...state.notes.sessionNotes, action.payload];
+      state.appConstants.activityScore += 1;
     },
 
     // ? remove a note
@@ -58,6 +62,7 @@ export const globalSlice = createSlice({
         (note) => note.id !== action.payload
       );
       state.notes.sessionNotes = filteredArr;
+      state.appConstants.activityScore += 1;
     },
 
     // ? change label color of note
@@ -69,6 +74,7 @@ export const globalSlice = createSlice({
         return note;
       });
       state.notes.sessionNotes = editedArr;
+      state.appConstants.activityScore += 1;
     },
 
     // ? Edit note
@@ -80,6 +86,7 @@ export const globalSlice = createSlice({
         return note;
       });
       state.notes = editedArr;
+      state.appConstants.activityScore += 1;
     },
 
     // ? Add note to favourite
@@ -88,6 +95,7 @@ export const globalSlice = createSlice({
         ...state.notes.favouriteNotes,
         action.payload,
       ];
+      state.appConstants.activityScore += 1;
     },
   },
 });

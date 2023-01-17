@@ -86,7 +86,7 @@ const NotesCard = ({ id, title, info, labelColor }) => {
       )}`}
     >
       <div className="w-full flex items-center justify-between">
-        <h1 className="text-2xl md:text-3xl">{title}</h1>
+        <h1 className="text-2xl md:text-3xl text-white">{title}</h1>
         <div className="flex gap-2 bg-base-200 px-4 py-2 rounded-full">
           <div className="tooltip" data-tip="primary label">
             <ColorBadge
@@ -115,7 +115,7 @@ const NotesCard = ({ id, title, info, labelColor }) => {
         </div>
       </div>
 
-      <p className="mt-4">{info}</p>
+      <p className="mt-4 text-white">{info}</p>
       <div className="w-full flex justify-center">
         <div className="flex w-auto p-2 gap-4 mt-4 bg-base-200  rounded-full">
           <div className="tooltip" data-tip="delete">

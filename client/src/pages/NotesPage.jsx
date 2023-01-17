@@ -4,6 +4,7 @@ import { NotesCard } from "../components";
 import { useSelector, useDispatch } from "react-redux";
 import { GrAdd } from "react-icons/gr";
 import { addNote } from "../redux/AppSlice";
+import { AiOutlineHeart } from "react-icons/ai";
 
 // notes page
 const NotesPage = () => {
@@ -40,18 +41,10 @@ const NotesPage = () => {
     console.log(newNote);
   };
 
-  const handleCopyClick = async () => {
-    try {
-      await navigator.clipboard.writeText(newNote);
-      setIsCopied(true);
-    } catch (err) {
-      console.error("Failed to copy text: ", err);
-    }
-  };
-
   return (
     <DashboardLayout>
       <div className="flex flex-col items-center bg-base-200 w-screen h-auto">
+        <AiOutlineHeart className="text-4xl text-rose-600 cursor-pointer fixed top-24 right-4" />
         <h1 className="text-6xl py-4 text-white">Notes</h1>
         <div className="w-full block md:flex md:flex-wrap justify-center gap-4 p-4">
           <div
