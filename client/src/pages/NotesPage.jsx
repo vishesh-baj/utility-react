@@ -2,9 +2,8 @@ import React, { useRef, useState } from "react";
 import { DashboardLayout } from "../layout";
 import { NotesCard } from "../components";
 import { useSelector, useDispatch } from "react-redux";
-import { GrAdd } from "react-icons/gr";
+import { IoAdd } from "react-icons/io5";
 import { addNote } from "../redux/AppSlice";
-import { AiOutlineHeart } from "react-icons/ai";
 
 // notes page
 const NotesPage = () => {
@@ -45,14 +44,13 @@ const NotesPage = () => {
   return (
     <DashboardLayout>
       <div className="flex flex-col items-center bg-base-200 w-screen h-auto">
-        <AiOutlineHeart className="text-4xl text-rose-600 cursor-pointer fixed top-24 right-4" />
         <h1 className="text-6xl py-4 text-white">Notes</h1>
         <div className="w-full block md:flex md:flex-wrap justify-center gap-4 p-4">
           <div
             onClick={handleModalToggle}
-            className="w-full rounded-lg p-4 bg-base-200 border-4 border-base-300 h-[150px] flex justify-center items-center"
+            className="rounded-lg p-4 bg-base-200 border-4 border-base-100 w-96 h-48 flex justify-center items-center hover:bg-base-100 transition-all ease-in-out duration-400"
           >
-            <GrAdd className="bg-base-200 text-4xl" />
+            <IoAdd className="text-8xl text-base-300" />
           </div>
           {notesList.map(({ id, title, info, labelColor }) => (
             <NotesCard
@@ -64,7 +62,6 @@ const NotesPage = () => {
             />
           ))}
         </div>
-
         <input
           ref={modalRef}
           type="checkbox"

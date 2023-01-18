@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import ColorBadge from "./ColorBadge";
 import { IoTrashBinOutline } from "react-icons/io5";
 import { RiEditCircleLine } from "react-icons/ri";
@@ -14,6 +14,14 @@ import {
 // notes card for  the notes page component page
 const NotesCard = ({ id, title, info, labelColor }) => {
   const [isCoppied, setIsCoppied] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const [notesObj, setNotesObj] = useState({
+    id: id,
+    title: title,
+    info: info,
+    labelColor: labelColor,
+  });
+  const modalRef = useRef();
   // dispatch the function to the store
   const dispatch = useDispatch();
   // check color
@@ -59,14 +67,24 @@ const NotesCard = ({ id, title, info, labelColor }) => {
     dispatch(
       addNoteToFavourite({
         id: Math.trunc(Math.random() * 1000),
-        title: title,
-        info: info,
-        labelColor,
+        title: notesObj.title,
+        info: notesObj.info,
+        labelColor: notesObj.labelColor,
       })
     );
     console.log("SAVED TO NOTES FAVOURITE");
   };
 
+  const handleEdit = () => {
+    console.log("EDIT ENABLED");
+    setEditMode((prevState) => !prevState);
+    modalRef.current.checked = !modalRef.current.checked;
+  };
+
+  const handleChange = (e) => {
+    console.log("CHANGE");
+    setNotesObj({ ...notesObj, [e.target.name]: e.target.value });
+  };
   // resets the copy state to default so that toats can hide
   const resetIsCoppiedState = () => {
     if (isCoppied) {
@@ -116,7 +134,8 @@ const NotesCard = ({ id, title, info, labelColor }) => {
       </div>
 
       <p className="mt-4 text-white">{info}</p>
-      <div className="w-full flex justify-center">
+      <div className="w-full flex flex-col items-center justify-center">
+        {editMode && <button className="btn btn-ghost">Save</button>}
         <div className="flex w-auto p-2 gap-4 mt-4 bg-base-200  rounded-full">
           <div className="tooltip" data-tip="delete">
             <button onClick={handleDelete} className="btn btn-error btn-circle">
@@ -124,7 +143,7 @@ const NotesCard = ({ id, title, info, labelColor }) => {
             </button>
           </div>
           <div className="tooltip" data-tip="edit">
-            <button className="btn btn-success btn-circle">
+            <button onClick={handleEdit} className="btn btn-success btn-circle">
               <RiEditCircleLine className="text-lg text-white font-bold" />
             </button>
           </div>
@@ -156,6 +175,66 @@ const NotesCard = ({ id, title, info, labelColor }) => {
           </div>
         </div>
       )}
+
+      <input
+        ref={modalRef}
+        type="checkbox"
+        id="edit-modal"
+        className="modal-toggle"
+      />
+      <div className="modal">
+        <div className="modal-box relative">
+          <label
+            htmlFor="edit-modal"
+            className="btn btn-sm btn-circle absolute right-2 top-4"
+          >
+            x
+          </label>
+
+          <h3 className="text-lg font-bold">Edit Note</h3>
+          <form
+            onSubmit={(e) => handleSubmit(e)}
+            className="py-4 flex flex-col gap-4"
+          >
+            <div className="form-control">
+              <input
+                onChange={(e) => handleChange(e)}
+                value={notesObj.title}
+                className="input input-primary"
+                placeholder="enter note title"
+                type="text"
+                name="title"
+              />
+            </div>
+            <div className="form-control">
+              <textarea
+                onChange={(e) => handleChange(e)}
+                value={notesObj.info}
+                className="textarea textarea-bordered"
+                placeholder="Note Info"
+                name="info"
+              />
+            </div>
+
+            <select
+              name="labelColor"
+              onChange={(e) => handleChange(e)}
+              value={notesObj.labelColor}
+              className="select select-ghost w-full max-w-xs"
+            >
+              <option disabled>Pick a label</option>
+              <option value="primary">Primary</option>
+              <option value="secondary">Secondary</option>
+              <option value="info">Info</option>
+              <option value="warning">Warning</option>
+              <option value="none">None</option>
+            </select>
+            <button type="submit" className="btn btn-info w-1/4">
+              Add
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };

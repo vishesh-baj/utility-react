@@ -3,11 +3,35 @@ import { createSlice } from "@reduxjs/toolkit";
 // initial state
 const initialState = {
   user: null,
-  todo: [],
+  todo: [
+    { id: 1, title: "Make Coffee" },
+    { id: 2, title: "Complete created tasks" },
+    { id: 3, title: "Go out for a walk" },
+  ],
   notes: {
-    sessionNotes: [],
+    sessionNotes: [
+      {
+        id: Math.trunc(Math.random() * 10000),
+        title: "A short story",
+        info: "orem ipsum dolor sit amet, consectetur adipiscing elit. Proin eleifend pellentesque tempus. Nullam malesuada varius quam quis placerat. Vivamus est eros, porta ut risus eu, fringilla vulputate libero. Morbi tellus leo, sagittis id faucibus vitae, tincidunt sed ipsum. Maecenas nec feugiat libero. Mauris id nunc ac ex bibendum varius nec eget urna. Morbi et velit sit amet dolor dignissim finibus. Duis commodo rhoncus blandit. Mauris pretium feugiat mi, id tempus purus imperdiet pulvinar. Ut pellentesque metus sed ligula ornare aliquet. Praesent finibus fringilla egestas. Sed nec quam nisi.",
+        labelColor: "none",
+      },
+      {
+        id: Math.trunc(Math.random() * 10000),
+        title: "Life's stanza",
+        info: "orem ipsum dolor sit amet, consectetur adipiscing elit. Proin eleifend pellentesque tempus. Nullam malesuada varius quam quis placerat.",
+        labelColor: "none",
+      },
+      {
+        id: Math.trunc(Math.random() * 10000),
+        title: "What to do today",
+        info: "orem ipsum dolor sit amet, consectetur adipiscing elit.",
+        labelColor: "none",
+      },
+    ],
     favouriteNotes: [],
   },
+
   pomodoro: [],
   colorPicker: [],
   appConstants: {

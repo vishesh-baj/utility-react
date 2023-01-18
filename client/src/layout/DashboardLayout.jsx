@@ -5,7 +5,7 @@ import { PATHS } from "../routes/paths";
 const DashboardLayout = ({ children }) => {
   const toggleRef = useRef();
   return (
-    <div className="drawer">
+    <div data-theme="dracula" className="drawer">
       <input
         ref={toggleRef}
         id="my-drawer-3"
