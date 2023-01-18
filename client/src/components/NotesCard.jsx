@@ -9,6 +9,7 @@ import {
   removeNote,
   changeLabelColor,
   addNoteToFavourite,
+  editNote,
 } from "../redux/AppSlice";
 
 // notes card for  the notes page component page
@@ -93,10 +94,23 @@ const NotesCard = ({ id, title, info, labelColor }) => {
       }, 3000);
     }
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(
+      editNote({
+        id: notesObj.id,
+        title: notesObj.title,
+        info: notesObj.info,
+        labelColor: notesObj.labelColor,
+      })
+    );
+    modalRef.current.checked = !modalRef.current.checked;
+  };
+
   useEffect(() => {
     resetIsCoppiedState();
   }, [isCoppied]);
-
+  // returned jsx
   return (
     <div
       className={`w-full md:w-1/3 p-6 flex flex-wrap rounded-lg  shadow-sm shadow-base-200 mt-5 ${checkColor(

@@ -31,7 +31,6 @@ const initialState = {
     ],
     favouriteNotes: [],
   },
-
   pomodoro: [],
   colorPicker: [],
   appConstants: {
@@ -103,13 +102,13 @@ export const globalSlice = createSlice({
 
     // ? Edit note
     editNote: (state, action) => {
-      const editedArr = state.notes.map((note) => {
+      const editedArr = state.notes.sessionNotes.map((note) => {
         if (note.id === action.payload.id) {
           return action.payload;
         }
         return note;
       });
-      state.notes = editedArr;
+      state.notes.sessionNotes = editedArr;
       state.appConstants.activityScore += 1;
     },
 
