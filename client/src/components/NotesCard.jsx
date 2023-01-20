@@ -24,6 +24,8 @@ const NotesCard = ({ id, title, info, labelColor }) => {
   });
   const modalRef = useRef();
   // dispatch the function to the store
+
+  // dispatch is used for specific usecases
   const dispatch = useDispatch();
   // check color
   const checkColor = (color) => {
@@ -149,7 +151,6 @@ const NotesCard = ({ id, title, info, labelColor }) => {
 
       <p className="mt-4 text-white">{info}</p>
       <div className="w-full flex flex-col items-center justify-center">
-        {editMode && <button className="btn btn-ghost">Save</button>}
         <div className="flex w-auto p-2 gap-4 mt-4 bg-base-200  rounded-full">
           <div className="tooltip" data-tip="delete">
             <button onClick={handleDelete} className="btn btn-error btn-circle">
@@ -243,8 +244,8 @@ const NotesCard = ({ id, title, info, labelColor }) => {
               <option value="warning">Warning</option>
               <option value="none">None</option>
             </select>
-            <button type="submit" className="btn btn-info w-1/4">
-              Add
+            <button type="submit" className="btn btn-success w-1/4">
+              Save
             </button>
           </form>
         </div>

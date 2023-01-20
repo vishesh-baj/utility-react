@@ -121,6 +121,7 @@ export const globalSlice = createSlice({
       state.appConstants.activityScore += 1;
     },
   },
+  // *  COLORPICKER___________________________________________________________
 });
 
 // specifics are provided
